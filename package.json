@@ -1,0 +1,33 @@
+{
+  "name": "data-oriented-programming-rescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rescript",
+    "clean": "rescript clean -with-deps",
+    "start": "rescript build -w",
+    "test": "retest __tests__/*.bs.js"
+  },
+
+  "author": "",
+  "license": "ISC",
+  "keywords": [
+    "rescript"
+  ],
+  "devDependencies": {
+    "@glennsl/bs-jest": "^0.7.0",
+    "jest": "^27.0.6",
+    "rescript": "^9.1.4",
+    "rescript-test": "^3.0.0"
+  },
+  "jest": {
+    "testMatch": [
+      "<rootDir>/**/*.test.(js|jsx|ts|tsx)",
+      "<rootDir>/__tests__/**/*.(js|jsx|ts|tsx)"
+    ]
+  },
+  "dependencies": {
+    "rescript": "*"
+  }
+}
