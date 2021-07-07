@@ -15,7 +15,7 @@ module Book = {
     publicationYear: int,
     isbn: string,
     //    publisher: string,
-    authors: array<string>, // collection
+    authorIds: array<string>, // collection
     bookItems: array<BookItems.t>,
   }
 }
@@ -23,7 +23,7 @@ module Book = {
 module Author = {
   type t = {
     name: string,
-    books: array<string>, // collection
+    bookIsbns: array<string>, // collection
   }
 }
 
@@ -39,21 +39,33 @@ type t = {
   authorsById: Map.String.t<Author.t>, // iindexes
 }
 
-let watchmen: Book.t = {
-  isbn: "978-1779501127",
-  title: "Watchmen",
-  publicationYear: 1987,
-  authors: ["alan-moore", "dave-gibbons"],
-  bookItems: [
-    {
-      id: "book-item-1",
-      rackId: "rack-17",
-      isLent: true,
-    },
-    {
-      id: "book-item-2",
-      rackId: "rack-17",
-      isLent: false,
-    },
-  ],
+let authorNames = (cat: t, book: Book.t) => {
+  book.authorIds->Array.map(x => {
+    (cat.authorsById->Map.String.get(_, x)->Option.getExn).name
+  })
+}
+
+module BookInfo = {
+  type t = {
+    title: string,
+    isbn: string,
+    authorNames: array<string>,
+  }
+}
+
+let bookInfo = (cat: t, book: Book.t): BookInfo.t => {
+  {
+    title: book.title,
+    isbn: book.isbn,
+    authorNames: authorNames(cat, book),
+  }
+}
+
+let searchBooksByTitle = (cat: t, query): array<BookInfo.t> => {
+  cat.booksByIsbn
+  ->Map.String.keep((_, v) => {
+    v.title->Js.String2.includes(_, query)
+  })
+  ->Map.String.map(v => bookInfo(cat, v))
+  ->Map.String.valuesToArray
 }
