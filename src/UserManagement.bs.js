@@ -4,11 +4,14 @@
 
 var Users = {};
 
+var BookLending = {};
+
 var Member = {};
 
 var Librarian = {};
 
 exports.Users = Users;
+exports.BookLending = BookLending;
 exports.Member = Member;
 exports.Librarian = Librarian;
 /* No side effect */
