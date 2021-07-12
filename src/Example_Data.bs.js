@@ -12,11 +12,13 @@ var watchmen_bookItems = [
   {
     id: "book-item-1",
     rackId: "rack-17",
+    purchaseDate: "1999-01-01",
     isLent: true
   },
   {
     id: "book-item-2",
     rackId: "rack-17",
+    purchaseDate: "1980-01-01",
     isLent: false
   }
 ];
@@ -41,11 +43,13 @@ var sampleCatalog_booksByIsbn = Belt_MapString.set(undefined, "978-1779501127", 
         {
           id: "book-item-1",
           rackId: "rack-17",
+          purchaseDate: "1999-01-01",
           isLent: true
         },
         {
           id: "book-item-2",
           rackId: "rack-17",
+          purchaseDate: "1980-01-01",
           isLent: false
         }
       ]
@@ -64,25 +68,27 @@ var sampleCatalog = {
   authorsById: sampleCatalog_authorsById
 };
 
-var userManagementData_librarians = Belt_MapString.set(undefined, "franck@gmail.com", {
+var userManagementData_librariansByEmail = Belt_MapString.set(undefined, "franck@gmail.com", {
       email: "franck@gmail.com",
       encryptedPassword: "bXlwYXNzd29yZA=="
     });
 
-var userManagementData_members = Belt_MapString.set(undefined, "samantha@gmail.com", {
+var userManagementData_membersByEmail = Belt_MapString.set(undefined, "samantha@gmail.com", {
       email: "samantha@gmail.com",
       encryptedPassword: "c2VjcmV0",
       isBlocked: false,
       bookLendings: [{
+          lendingDate: "2020-04-23",
           bookItemId: "book-item-1",
-          bookIsbn: "978-1779501127",
-          lendingDate: "2020-04-23"
-        }]
+          bookIsbn: "978-1779501127"
+        }],
+      isVIP: false,
+      isSuper: false
     });
 
 var userManagementData = {
-  librarians: userManagementData_librarians,
-  members: userManagementData_members
+  librariansByEmail: userManagementData_librariansByEmail,
+  membersByEmail: userManagementData_membersByEmail
 };
 
 var libraryData = {

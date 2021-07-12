@@ -16,11 +16,13 @@ let watchmen: Book.t = {
       id: "book-item-1",
       rackId: "rack-17",
       isLent: true,
+      purchaseDate: "1999-01-01",
     },
     {
       id: "book-item-2",
       rackId: "rack-17",
       isLent: false,
+      purchaseDate: "1980-01-01",
     },
   ],
 }
@@ -39,11 +41,13 @@ let sampleCatalog: Catalog.t = {
             id: "book-item-1",
             rackId: "rack-17",
             isLent: true,
+            purchaseDate: "1999-01-01",
           },
           {
             id: "book-item-2",
             rackId: "rack-17",
             isLent: false,
+            purchaseDate: "1980-01-01",
           },
         ],
       }: Book.t
@@ -69,7 +73,7 @@ let sampleCatalog: Catalog.t = {
 }
 
 let userManagementData: UserManagement.t = {
-  librarians: Map.String.empty->Map.String.set(
+  librariansByEmail: Map.String.empty->Map.String.set(
     "franck@gmail.com",
     (
       {
@@ -78,7 +82,7 @@ let userManagementData: UserManagement.t = {
       }: Librarian.t
     ),
   ),
-  members: Map.String.empty->Map.String.set(
+  membersByEmail: Map.String.empty->Map.String.set(
     "samantha@gmail.com",
     (
       {
@@ -92,6 +96,8 @@ let userManagementData: UserManagement.t = {
             lendingDate: "2020-04-23",
           },
         ],
+        isVIP: false,
+        isSuper: false,
       }: Member.t
     ),
   ),

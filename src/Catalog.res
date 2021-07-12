@@ -4,7 +4,7 @@ module BookItems = {
   type t = {
     id: string,
     rackId: string,
-    //  purchaseDate: string,
+    purchaseDate: string,
     isLent: bool,
   }
 }
