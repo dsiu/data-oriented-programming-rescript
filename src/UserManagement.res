@@ -43,3 +43,20 @@ let isVIPMember = (userManagement: t, email) => {
 let isSuperMember = (userManagement: t, email) => {
   (userManagement.membersByEmail->Map.String.get(_, email)->Option.getExn).isSuper
 }
+
+type error = AlreadyExist
+
+type result = Belt.Result.t<t, error>
+
+let addMember = (userManagement: t, member: Member.t): result => {
+  switch userManagement.membersByEmail->Map.String.get(_, member.email) {
+  | Some(u) =>
+    u->ignore // so slient compiler warning
+    Error(AlreadyExist)
+  | None =>
+    Ok({
+      librariansByEmail: userManagement.librariansByEmail,
+      membersByEmail: Map.String.set(userManagement.membersByEmail, member.email, member),
+    })
+  }
+}

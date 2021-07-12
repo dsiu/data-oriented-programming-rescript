@@ -20,10 +20,30 @@ function isSuperMember(userManagement, email) {
   return Belt_Option.getExn(Belt_MapString.get(userManagement.membersByEmail, email)).isSuper;
 }
 
+function addMember(userManagement, member) {
+  var __x = userManagement.membersByEmail;
+  var u = Belt_MapString.get(__x, member.email);
+  if (u !== undefined) {
+    return {
+            TAG: /* Error */1,
+            _0: /* AlreadyExist */0
+          };
+  } else {
+    return {
+            TAG: /* Ok */0,
+            _0: {
+              librariansByEmail: userManagement.librariansByEmail,
+              membersByEmail: Belt_MapString.set(userManagement.membersByEmail, member.email, member)
+            }
+          };
+  }
+}
+
 exports.Users = Users;
 exports.BookLending = BookLending;
 exports.Member = Member;
 exports.Librarian = Librarian;
 exports.isVIPMember = isVIPMember;
 exports.isSuperMember = isSuperMember;
+exports.addMember = addMember;
 /* No side effect */
