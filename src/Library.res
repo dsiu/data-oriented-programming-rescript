@@ -15,7 +15,7 @@ let addMember = (library: t, member) => {
   let currentUserManagement = library.userManagement
   let nextUserManagement = switch currentUserManagement->UserManagement.addMember(member) {
   | Ok(u) => u
-  | Error(AlreadyExist) => raise(AlreadyExist)
+  | Error(AlreadyExist) => raise(AlreadyExist) // convert an error to exception
   }
   let nextLibrary = {...library, userManagement: nextUserManagement}
   nextLibrary

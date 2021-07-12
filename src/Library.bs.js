@@ -2,18 +2,18 @@
 'use strict';
 
 var Caml_exceptions = require("rescript/lib/js/caml_exceptions.js");
-var Catalog$AdventOfCode = require("./Catalog.bs.js");
-var UserManagement$AdventOfCode = require("./UserManagement.bs.js");
+var Catalog$DopRescript = require("./Catalog.bs.js");
+var UserManagement$DopRescript = require("./UserManagement.bs.js");
 
 function searchBooksByTitleJSON(library, query) {
-  return JSON.stringify(Catalog$AdventOfCode.searchBooksByTitle(library.catalog, query));
+  return JSON.stringify(Catalog$DopRescript.searchBooksByTitle(library.catalog, query));
 }
 
-var AlreadyExist = /* @__PURE__ */Caml_exceptions.create("Library-AdventOfCode.AlreadyExist");
+var AlreadyExist = /* @__PURE__ */Caml_exceptions.create("Library-DopRescript.AlreadyExist");
 
 function addMember(library, member) {
   var currentUserManagement = library.userManagement;
-  var u = UserManagement$AdventOfCode.addMember(currentUserManagement, member);
+  var u = UserManagement$DopRescript.addMember(currentUserManagement, member);
   var nextUserManagement;
   if (u.TAG === /* Ok */0) {
     nextUserManagement = u._0;

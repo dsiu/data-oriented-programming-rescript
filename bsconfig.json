@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/rescript-lang/rescript-compiler/master/docs/docson/build-schema.json",
-  "name": "advent-of-code",
+  "name": "dop-rescript",
   "version": "0.1.0",
   "sources": [
     {
